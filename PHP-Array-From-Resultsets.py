@@ -52,7 +52,7 @@ def executePHPArrayFromResultSet(editor):
               output.append('array(')
               for i, column in enumerate(rset.columns):
                   col_name, col_value = column.name.rjust(column_name_length), rset.stringFieldValue(i)
-                  output.append('\'%s\' => \'%s\',\n' % (col_name.strip(), col_value if col_value is not None else 'NULL'))
+                  output.append('\'%s\' => \'%s\',' % (col_name.strip(), col_value if col_value is not None else 'NULL'))
 
               output.append('),\n')
               ok = rset.nextRow()
