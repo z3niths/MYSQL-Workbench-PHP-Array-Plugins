@@ -49,12 +49,12 @@ def executePHPArrayFromResultSet(editor):
           ok = rset.goToFirstRow()
           while ok:
               output.append('******************** %s. row *********************' % (rset.currentRow + 1))
-              output.append('array(')
+              output.append('$this->tester->haveInDatabase(Dbs::{REPLACE_TABLENAME}, [')
               for i, column in enumerate(rset.columns):
                   col_name, col_value = column.name.rjust(column_name_length), rset.stringFieldValue(i)
                   output.append('\'%s\' => \'%s\',' % (col_name.strip(), col_value if col_value is not None else 'NULL'))
 
-              output.append('),\n')
+              output.append(']);,\n')
               ok = rset.nextRow()
           rset.reset_references()            
           if len(rsets) > 1:
